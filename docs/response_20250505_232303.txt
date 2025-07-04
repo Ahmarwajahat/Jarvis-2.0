@@ -1,0 +1,32 @@
+Prompt:
+give me python simple code
+
+Gemini Response:
+```python
+def greet(name):
+  """Greets the person passed in as a parameter."""
+  print(f"Hello, {name}!")
+
+# Get the user's name
+user_name = input("Enter your name: ")
+
+# Call the greet function
+greet(user_name)
+```
+
+**Explanation:**
+
+1. **`def greet(name):`**: This defines a function named `greet` that takes one argument, `name`.
+2. **`"""Greets the person passed in as a parameter."""`**: This is a docstring, a multiline string that describes what the function does. It's good practice to include docstrings for clarity.
+3. **`print(f"Hello, {name}!")`**: This line uses an f-string (formatted string literal) to create a greeting message that includes the value of the `name` variable.  `f"..."` allows you to embed expressions directly within the string using curly braces `{}`.
+4. **`user_name = input("Enter your name: ")`**: This line prompts the user to enter their name using the `input()` function. The text inside the parentheses is the prompt that will be displayed to the user. The user's input is then stored in the `user_name` variable.
+5. **`greet(user_name)`**: This line calls the `greet` function, passing the `user_name` variable as an argument.  This will execute the code inside the `greet` function, printing the personalized greeting.
+
+**How to run this code:**
+
+1. **Save the code:** Save the code in a file named, for example, `greeting.py`.
+2. **Open a terminal or command prompt:**
+3. **Navigate to the directory where you saved the file:**  Use the `cd` command (change directory) to navigate to the correct location.
+4. **Run the code:** Type `python greeting.py` and press Enter.
+
+The program will then ask you for your name and print a personalized greeting.

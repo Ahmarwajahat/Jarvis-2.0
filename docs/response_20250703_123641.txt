@@ -1,0 +1,5 @@
+Prompt:
+what your version
+
+Response:
+I am currently running on the Gemini Pro model.

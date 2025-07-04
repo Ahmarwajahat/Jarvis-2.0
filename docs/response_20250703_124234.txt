@@ -1,0 +1,75 @@
+Prompt:
+acha mujhai btao flask kya hai
+
+Response:
+AI: The user is asking about what Flask is.
+
+Okay, mein aapko Flask ke baare mein batata hun.
+
+Flask Python mein likha gaya ek web microframework hai. Microframework ka matlab hai ki yeh framework bohat kam zaroori cheezon par focus karta hai, jaise routing, templates, aur request handling. Yeh framework aapko web applications banane ke liye zaroori cheezain provide karta hai, lekin yeh aapko yeh nahi batata hai ki aapko exactly kya karna hai.  Aap apni zaroorat ke hisab se khud faisla kar sakte hain.
+
+**Kuchh khaas baatein jo Flask ko maqbool banati hain:**
+
+*   **Lightweight:** Flask bohat halka hai aur isko setup karna bhi aasan hai.
+*   **Flexible:** Flask bohat flexible hai aur aap apni zaroorat ke hisab se ise customize kar sakte hain.
+*   **Extensible:** Flask bohat extensible hai aur aap ismein extensions add kar sakte hain.
+*   **Easy to learn:** Flask seekhna bohat aasan hai, khaas kar agar aapko Python aata hai.
+*   **Big Community:** Flask ki ek bari aur active community hai, to aapko madad aur support aasani se mil jayegi.
+
+**Flask kahan istemaal hota hai?**
+
+Flask bohat si cheezon ke liye istemaal ho sakta hai, jaise:
+
+*   **Simple websites:** Aap Flask ko choti aur simple websites banane ke liye istemaal kar sakte hain.
+*   **Web APIs:** Aap Flask ko web APIs banane ke liye istemaal kar sakte hain.
+*   **Prototyping:** Aap Flask ko web applications ka prototype banane ke liye istemaal kar sakte hain.
+*   **Learning web development:** Agar aap web development seekhna chahte hain, toh Flask ek acha starting point hai.
+*   **Data Science web applications:** Flask data science models ko web applications ke through share karne aur istemaal karne ke liye istemaal hota hai.
+
+**Basic Example (Misal):**
+
+Yahan ek simple Flask application ka code hai:
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World!</p>"
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+**Explanation (Wazahat):**
+
+*   `from flask import Flask`: Yeh line Flask library ko import karti hai.
+*   `app = Flask(__name__)`: Yeh Flask application ka instance banati hai.
+*   `@app.route("/")`: Yeh route define karta hai. Is ka matlab hai ki jab koi user website ke root (/) par jayega, toh `hello_world()` function chalega.
+*   `def hello_world():`: Yeh function "Hello, World!" ka HTML code return karta hai.
+*   `if __name__ == '__main__':`:  Yeh check karta hai ki kya yeh script directly run ho rahi hai.
+*   `app.run(debug=True)`: Yeh Flask application ko start karta hai.  `debug=True`  ka matlab hai ke debug mode on hai, jo development ke liye helpful hai.  Is se errors zyada asaani se dhunde ja sakte hain.
+
+**How to run this code:**
+
+1.  Save the code in a file named `app.py` (or any name you like, but the `.py` extension is important for Python code).
+2.  Open a terminal or command prompt.  Make sure you have Python and Flask installed. You can install Flask using pip:
+
+    ```bash
+    pip install flask
+    ```
+3.  Navigate to the directory where you saved the `app.py` file and run the following command:
+
+    ```bash
+    python app.py
+    ```
+
+4.  Open your web browser and go to `http://127.0.0.1:5000/`. You should see "Hello, World!" displayed on the page.
+
+**In Summary (Khulasa):**
+
+Flask ek chhoti aur aasan-se-istemal hone wali Python web framework hai jo aapko web applications aur APIs banane mein madad karta hai.  Yeh flexible, extensible, aur seekhne mein aasan hai, jo ise beginner-friendly banata hai.
+
+Mujhe umeed hai yeh madadgaar tha! Aap aur kya jaanna chahte hain?

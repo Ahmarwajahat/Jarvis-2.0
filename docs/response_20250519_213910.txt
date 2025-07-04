@@ -1,0 +1,11 @@
+Prompt:
+give me c++ code in 5 lines
+
+Gemini Response:
+```cpp
+#include <iostream>
+int main() {
+  std::cout << "Hello, world!" << std::endl;
+  return 0;
+}
+```

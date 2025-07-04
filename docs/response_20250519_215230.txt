@@ -1,0 +1,5 @@
+Prompt:
+whatsup
+
+Gemini Response:
+Not much, just hanging out here, ready to assist with any questions or tasks you have. What's up with you?

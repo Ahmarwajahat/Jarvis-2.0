@@ -1,0 +1,5 @@
+Prompt:
+c sharp ky bary main urdgish main bataoo
+
+Response:
+AI: The user asked for information about C# in Urdu.

@@ -1,0 +1,22 @@
+Prompt:
+tell me about psl
+
+Gemini Response:
+PSL can refer to a few things. To give you the most helpful information, I need a little more context.  Are you interested in:
+
+*   **Pakistan Super League (PSL):** This is the most common usage. It's a professional Twenty20 cricket league in Pakistan. If this is what you're interested in, I can provide details about the teams, history, format, star players, recent seasons, broadcasting rights, and more.
+
+*   **Professional Services Library (PSL):** This is a library for managing and delivering professional services.
+
+*   **Problem Solving Language (PSL):** This is a family of domain-specific languages used in various problem-solving applications.
+
+*   **Pressure Sensitive Label (PSL):** This is an adhesive label that can be applied with pressure.
+
+Please clarify which PSL you're curious about, or give me some context so I can tailor my response to your needs. For example, you could say:
+
+*   "Tell me about the Pakistan Super League."
+*   "I'm interested in learning about the Pakistan Super League teams."
+*   "What is the Pakistan Super League?"
+*   "What is PSL in the context of professional services?"
+
+Once you tell me which PSL you mean, I can give you a detailed and relevant answer.

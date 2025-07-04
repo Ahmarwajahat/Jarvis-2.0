@@ -1,0 +1,137 @@
+2025-05-05 23:26:33,380 - werkzeug - WARNING -  * Debugger is active!
+2025-05-05 23:26:33,385 - werkzeug - INFO -  * Debugger PIN: 126-024-935
+2025-05-05 23:26:44,976 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:26:44] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:26:45,360 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:26:45] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-05-05 23:26:45,398 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:26:45] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-05-05 23:26:45,577 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:26:45] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-05-05 23:26:47,542 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:26:47] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:26:47,623 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:26:47] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:26:47,626 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:26:47] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:26:47,654 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:26:47] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:30:20,859 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3200
+ * Running on http://192.168.1.26:3200
+2025-05-05 23:30:20,860 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-05 23:30:20,865 - werkzeug - INFO -  * Restarting with stat
+2025-05-05 23:30:22,832 - werkzeug - WARNING -  * Debugger is active!
+2025-05-05 23:30:22,835 - werkzeug - INFO -  * Debugger PIN: 126-024-935
+2025-05-05 23:30:29,139 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:29] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:30:29,765 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:29] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:30:29,767 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:29] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:30:29,833 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:29] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:30:32,453 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:32] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:30:32,523 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:32] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:30:32,568 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:32] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:30:32,649 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:32] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:30:36,366 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:36] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:30:36,468 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:36] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:30:36,469 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:36] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:30:36,502 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:36] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:30:36,855 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:36] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:30:36,899 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:36] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:30:36,912 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:36] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:30:36,935 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:36] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:30:37,092 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:37] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:30:37,157 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:37] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:30:37,175 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:37] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:30:37,220 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:37] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:30:40,162 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Ahmer Sharjeel\\OneDrive\\Desktop\\project AI\\server.py', reloading
+2025-05-05 23:30:40,386 - werkzeug - INFO -  * Restarting with stat
+2025-05-05 23:30:43,374 - werkzeug - WARNING -  * Debugger is active!
+2025-05-05 23:30:43,380 - werkzeug - INFO -  * Debugger PIN: 126-024-935
+2025-05-05 23:30:46,047 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:46] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:30:46,607 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:46] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:30:46,618 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:46] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:30:46,711 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:46] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:30:48,168 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:48] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:30:48,225 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:48] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:30:48,226 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:48] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:30:48,266 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:48] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:30:48,444 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:48] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:30:48,489 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:48] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:30:48,503 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:48] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:30:48,527 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:48] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:30:48,859 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:48] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:30:48,917 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:48] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:30:48,939 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:48] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:30:48,990 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:48] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:30:49,073 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:49] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:30:49,130 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:49] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:30:49,149 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:49] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:30:49,222 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:30:49] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:30:58,721 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Ahmer Sharjeel\\OneDrive\\Desktop\\project AI\\main.py', reloading
+2025-05-05 23:30:58,868 - werkzeug - INFO -  * Restarting with stat
+2025-05-05 23:31:03,215 - werkzeug - WARNING -  * Debugger is active!
+2025-05-05 23:31:03,237 - werkzeug - INFO -  * Debugger PIN: 126-024-935
+2025-05-05 23:31:20,364 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3200
+ * Running on http://192.168.1.26:3200
+2025-05-05 23:31:20,365 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-05 23:31:20,368 - werkzeug - INFO -  * Restarting with stat
+2025-05-05 23:31:22,012 - werkzeug - WARNING -  * Debugger is active!
+2025-05-05 23:31:22,016 - werkzeug - INFO -  * Debugger PIN: 126-024-935
+2025-05-05 23:31:26,343 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:26] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:26,610 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:26] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:26,616 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:26] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:26,641 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:26] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:27,625 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:27] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:27,679 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:27] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:27,696 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:27] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:27,738 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:27] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:28,215 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:28,250 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:28,264 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:28,301 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:28,432 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:28,473 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:28,490 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:28,531 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:28,642 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:28,685 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:28,698 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:28,733 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:28,820 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:28,858 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:28,862 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:28,901 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:28] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:29,042 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:29,083 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:29,095 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:29,128 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:29,265 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:29,304 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:29,308 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:29,337 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:29,542 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:29,609 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:29,611 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:29,659 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:29,959 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:29,997 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:29,998 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:29] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:30,020 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:30] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:30,176 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:30] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:30,212 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:30] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:30,227 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:30] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:30,248 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:30] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:30,764 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:30] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:31,702 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:31] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:31,813 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:31] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:31,833 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:31] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:31,879 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:31] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:31,940 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:31] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:31,987 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:31] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:31,989 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:31] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:32,034 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:32] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:32,583 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:32] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:32,654 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:32] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:32,658 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:32] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:32,718 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:32] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:31:32,818 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:32] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-05-05 23:31:32,879 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:32] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-05-05 23:31:32,895 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:32] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-05-05 23:31:32,938 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:31:32] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-05-05 23:32:06,653 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Ahmer Sharjeel\\OneDrive\\Desktop\\project AI\\server.py', reloading
+2025-05-05 23:32:07,011 - werkzeug - INFO -  * Restarting with stat

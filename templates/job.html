@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Advisor - JARVIS 2.0</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --main-bg: #0f2027;
+      --main-dark: #16213e;
+      --primary-color: #00e5ff;
+      --secondary-color: #00b4d8;
+      --font: 'Segoe UI', sans-serif;
+      --light-bg: #f0f0f0;
+      --light-text: #222;
+      --linkedin-blue: #0a66c2;
+      --indeed-blue: #2164f4;
+      --glassdoor-green: #0caa41;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: var(--font);
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      background: var(--main-bg);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    body.light-mode {
+      background: var(--light-bg);
+      color: var(--light-text);
+    }
+
+    aside {
+      width: 250px;
+      background: #101820;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    aside h2 {
+      color: var(--primary-color);
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    aside nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    aside nav a {
+      text-decoration: none;
+      color: #aaa;
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    aside nav a:hover {
+      background: rgba(0, 229, 255, 0.1);
+      color: #fff;
+    }
+
+    aside nav a.active {
+      background: rgba(0, 229, 255, 0.2);
+      color: var(--primary-color);
+      border-left: 4px solid var(--primary-color);
+    }
+
+    #main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    header {
+      padding: 1rem 2rem;
+      background: #142c40;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    body.light-mode header {
+      background: #ffffff;
+      color: var(--light-text);
+    }
+
+    #job-container {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+      background: var(--main-dark);
+      display: flex;
+      gap: 2rem;
+    }
+
+    body.light-mode #job-container {
+      background: #ffffff;
+    }
+
+    .job-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .resume-section {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    body.light-mode .resume-section {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .job-search-section {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    body.light-mode .job-search-section {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .section-title {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    body.light-mode .form-control {
+      background: white;
+      color: var(--light-text);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    button {
+      padding: 0.8rem 1.5rem;
+      background: var(--primary-color);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: black;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .btn-linkedin {
+      background: var(--linkedin-blue);
+      color: white;
+    }
+
+    .btn-indeed {
+      background: var(--indeed-blue);
+      color: white;
+    }
+
+    .btn-glassdoor {
+      background: var(--glassdoor-green);
+      color: white;
+    }
+
+    .resume-preview {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+    }
+
+    body.light-mode .resume-preview {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .resume-preview h3 {
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .resume-preview p {
+      margin-bottom: 0.5rem;
+    }
+
+    .job-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .job-card {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 1.2rem;
+      transition: all 0.3s;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    body.light-mode .job-card {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .job-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .job-company {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .job-location {
+      font-size: 0.8rem;
+      opacity: 0.7;
+      margin-top: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .job-description {
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .job-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .job-actions button {
+      padding: 0.5rem 0.8rem;
+      font-size: 0.8rem;
+    }
+
+    .job-source {
+      font-size: 0.7rem;
+      opacity: 0.6;
+      margin-top: 0.5rem;
+      text-align: right;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 2rem;
+      opacity: 0.7;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      background: rgba(0, 229, 255, 0.2);
+      border-radius: 12px;
+      font-size: 0.8rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .match-score {
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    .job-filters {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .job-filters select {
+      flex: 1;
+    }
+
+    @media (max-width: 768px) {
+      aside {
+        width: 70px;
+        padding: 1rem 0.5rem;
+      }
+      aside h2 {
+        font-size: 1rem;
+      }
+      aside nav a span {
+        display: none;
+      }
+      header {
+        padding: 1rem;
+      }
+      #job-container {
+        padding: 1rem;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <h2>JARVIS 2.0</h2>
+    <nav>
+      <a href="/jarvis"><i class="fas fa-comment-alt"></i><span>Chat Mode</span></a>
+      <a href="/task"><i class="fas fa-tasks"></i><span>Task Planner</span></a>
+      <a href="/job" class="active"><i class="fas fa-briefcase"></i><span>Career Advisor</span></a>
+      <a href="/settings"><i class="fas fa-cog"></i><span>Settings</span></a>
+      <a href="/history"><i class="fas fa-history"></i><span>History</span></a>
+    </nav>
+  </aside>
+
+  <div id="main">
+    <header>
+      <div>
+        <strong>Welcome back, {{ username }}!</strong>
+      </div>
+      <div>
+        <button onclick="window.location.href='/jarvis'"><i class="fas fa-arrow-left"></i> Back</button>
+        <button onclick="window.location.href='/logout'"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+    </header>
+
+    <div id="job-container">
+      <div class="job-section">
+        <div class="resume-section">
+          <h3 class="section-title"><i class="fas fa-file-alt"></i> Resume Analyzer</h3>
+          <form id="resume-form">
+            <div class="form-group">
+              <label for="resume-text">Paste your resume text</label>
+              <textarea id="resume-text" class="form-control" placeholder="Paste your resume content here..."></textarea>
+            </div>
+            <button type="button" onclick="analyzeResume()"><i class="fas fa-search"></i> Analyze Resume</button>
+          </form>
+
+          <div class="resume-preview" id="resume-analysis" style="display: none;">
+            <h3>Resume Analysis</h3>
+            <div id="resume-analysis-content"></div>
+          </div>
+        </div>
+
+        <div class="resume-section">
+          <h3 class="section-title"><i class="fas fa-lightbulb"></i> Career Suggestions</h3>
+          <div id="career-suggestions">
+            <div class="empty-state">
+              <p>Analyze your resume to get personalized career suggestions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="job-section">
+        <div class="job-search-section">
+          <h3 class="section-title"><i class="fas fa-search"></i> Job Search</h3>
+          <form id="job-search-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="job-title">Job Title</label>
+                <input type="text" id="job-title" class="form-control" placeholder="e.g. Software Engineer">
+              </div>
+              <div class="form-group">
+                <label for="job-location">Location</label>
+                <input type="text" id="job-location" class="form-control" placeholder="e.g. New York">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="job-skills">Skills (comma separated)</label>
+              <input type="text" id="job-skills" class="form-control" placeholder="e.g. Python, JavaScript, SQL">
+            </div>
+            <button type="button" onclick="searchJobs()"><i class="fas fa-search"></i> Search Jobs</button>
+          </form>
+
+          <div class="job-filters">
+            <select id="job-filter-source" class="form-control">
+              <option value="all">All Sources</option>
+              <option value="linkedin">LinkedIn</option>
+              <option value="indeed">Indeed</option>
+              <option value="glassdoor">Glassdoor</option>
+            </select>
+            <select id="job-filter-sort" class="form-control">
+              <option value="relevance">Sort by Relevance</option>
+              <option value="date">Sort by Date</option>
+              <option value="match">Sort by Match</option>
+            </select>
+          </div>
+
+          <div class="job-list" id="job-results">
+            <!-- Jobs will be loaded here -->
+            <div class="empty-state">
+              <p>Search for jobs to see results</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Sample resume data
+    let resumeData = null;
+    let jobResults = [];
+
+    // DOM elements
+    const resumeAnalysis = document.getElementById('resume-analysis');
+    const resumeAnalysisContent = document.getElementById('resume-analysis-content');
+    const careerSuggestions = document.getElementById('career-suggestions');
+    const jobResultsContainer = document.getElementById('job-results');
+
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check for saved dark mode preference
+      if (localStorage.getItem('lightMode') === 'true') {
+        document.body.classList.add("light-mode");
+      }
+
+      // Load sample resume if available
+      const sampleResume = localStorage.getItem('sampleResume');
+      if (sampleResume) {
+        document.getElementById('resume-text').value = sampleResume;
+      }
+    });
+
+    // Resume functions
+    function analyzeResume() {
+      const resumeText = document.getElementById('resume-text').value;
+      if (!resumeText.trim()) {
+        alert('Please paste your resume text first');
+        return;
+      }
+
+      // In a real app, this would send to a backend for analysis
+      // For demo, we'll simulate analysis
+      simulateResumeAnalysis(resumeText);
+    }
+
+    function simulateResumeAnalysis(resumeText) {
+      // Save resume to localStorage for demo
+      localStorage.setItem('sampleResume', resumeText);
+
+      // Simulate processing delay
+      setTimeout(() => {
+        // Generate mock analysis
+        resumeData = {
+          skills: ['Python', 'JavaScript', 'SQL', 'Flask', 'React', 'Data Structures', 'Algorithms'],
+          experience: [
+            { title: 'Software Engineer', company: 'Tech Corp', duration: '2 years' },
+            { title: 'Web Developer', company: 'Web Solutions', duration: '1 year' }
+          ],
+          education: [
+            { degree: 'BSc Computer Science', institution: 'State University', year: '2020' }
+          ],
+          summary: 'Full-stack developer with 3+ years of experience building web applications.'
+        };
+
+        displayResumeAnalysis(resumeData);
+        generateCareerSuggestions(resumeData);
+      }, 1500);
+    }
+
+    function displayResumeAnalysis(data) {
+      let analysisHTML = `
+        <p><strong>Summary:</strong> ${data.summary}</p>
+        
+        <h4 style="margin-top: 1.5rem;">Skills</h4>
+        <div>
+      `;
+      
+      data.skills.forEach(skill => {
+        analysisHTML += `<span class="skill-tag">${skill}</span>`;
+      });
+      
+      analysisHTML += `
+        </div>
+        
+        <h4 style="margin-top: 1.5rem;">Experience</h4>
+        <ul style="margin-left: 1.5rem;">
+      `;
+      
+      data.experience.forEach(exp => {
+        analysisHTML += `<li><strong>${exp.title}</strong> at ${exp.company} (${exp.duration})</li>`;
+      });
+      
+      analysisHTML += `
+        </ul>
+        
+        <h4 style="margin-top: 1.5rem;">Education</h4>
+        <ul style="margin-left: 1.5rem;">
+      `;
+      
+      data.education.forEach(edu => {
+        analysisHTML += `<li><strong>${edu.degree}</strong> from ${edu.institution} (${edu.year})</li>`;
+      });
+      
+      analysisHTML += `</ul>`;
+      
+      resumeAnalysisContent.innerHTML = analysisHTML;
+      resumeAnalysis.style.display = 'block';
+      
+      // Scroll to analysis
+      resumeAnalysis.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function generateCareerSuggestions(resumeData) {
+      // In a real app, this would use AI to suggest career paths
+      // For demo, we'll use mock suggestions based on skills
+      let suggestionsHTML = '';
+      
+      if (resumeData.skills.includes('Python') && resumeData.skills.includes('Data Structures')) {
+        suggestionsHTML += `
+          <div class="job-card">
+            <h4>Suggested Career Path</h4>
+            <p><strong>Python Developer / Data Engineer</strong></p>
+            <p>Your Python and data skills make you a strong candidate for roles in data engineering and backend development.</p>
+            <div class="job-actions">
+              <button class="btn-secondary" onclick="searchJobs('Python Developer')">
+                <i class="fas fa-search"></i> Find Python Jobs
+              </button>
+            </div>
+          </div>
+        `;
+      }
+      
+      if (resumeData.skills.includes('JavaScript') && resumeData.skills.includes('React')) {
+        suggestionsHTML += `
+          <div class="job-card">
+            <h4>Suggested Career Path</h4>
+            <p><strong>Frontend Developer / React Specialist</strong></p>
+            <p>Your JavaScript and React experience positions you well for frontend development roles.</p>
+            <div class="job-actions">
+              <button class="btn-secondary" onclick="searchJobs('React Developer')">
+                <i class="fas fa-search"></i> Find React Jobs
+              </button>
+            </div>
+          </div>
+        `;
+      }
+      
+      if (resumeData.skills.includes('SQL')) {
+        suggestionsHTML += `
+          <div class="job-card">
+            <h4>Suggested Career Path</h4>
+            <p><strong>Database Administrator / Data Analyst</strong></p>
+            <p>Your SQL skills could be valuable in database administration or data analysis roles.</p>
+            <div class="job-actions">
+              <button class="btn-secondary" onclick="searchJobs('SQL Developer')">
+                <i class="fas fa-search"></i> Find SQL Jobs
+              </button>
+            </div>
+          </div>
+        `;
+      }
+      
+      if (suggestionsHTML === '') {
+        suggestionsHTML = `
+          <div class="job-card">
+            <h4>General Software Developer</h4>
+            <p>Your diverse skill set makes you suitable for various software development roles.</p>
+            <div class="job-actions">
+              <button class="btn-secondary" onclick="searchJobs('Software Developer')">
+                <i class="fas fa-search"></i> Find Developer Jobs
+              </button>
+            </div>
+          </div>
+        `;
+      }
+      
+      careerSuggestions.innerHTML = suggestionsHTML;
+    }
+
+    // Job search functions
+    function searchJobs(customTitle = null) {
+      const title = customTitle || document.getElementById('job-title').value;
+      const location = document.getElementById('job-location').value;
+      const skills = document.getElementById('job-skills').value;
+      
+      if (!title && !customTitle) {
+        alert('Please enter a job title or use one of the suggested searches');
+        return;
+      }
+      
+      // In a real app, this would fetch from job APIs
+      // For demo, we'll use mock data
+      simulateJobSearch(title, location, skills.split(',').map(s => s.trim()));
+    }
+
+    function simulateJobSearch(title, location, skills) {
+      // Simulate API delay
+      setTimeout(() => {
+        // Generate mock job results
+        jobResults = [
+          {
+            id: 1,
+            title: `${title} (Full Stack)`,
+            company: 'Tech Innovations Inc.',
+            location: location || 'Remote',
+            description: `We're looking for a skilled ${title} to join our team. Responsibilities include developing and maintaining web applications.`,
+            skills: ['JavaScript', 'Python', 'React', 'Node.js'],
+            match: 85,
+            date: '2 days ago',
+            source: 'linkedin',
+            url: '#'
+          },
+          {
+            id: 2,
+            title: `Senior ${title}`,
+            company: 'Data Systems LLC',
+            location: location || 'New York, NY',
+            description: `Seeking an experienced ${title} to lead our development team. Must have strong problem-solving skills.`,
+            skills: ['Python', 'SQL', 'AWS', 'Docker'],
+            match: 78,
+            date: '1 week ago',
+            source: 'indeed',
+            url: '#'
+          },
+          {
+            id: 3,
+            title: `${title} - Entry Level`,
+            company: 'Web Solutions Co.',
+            location: location || 'Chicago, IL',
+            description: `Great opportunity for a junior ${title} to grow their skills in a supportive environment.`,
+            skills: ['JavaScript', 'HTML', 'CSS'],
+            match: 65,
+            date: '3 days ago',
+            source: 'glassdoor',
+            url: '#'
+          }
+        ];
+        
+        // Filter and sort based on user selections
+        const filterSource = document.getElementById('job-filter-source').value;
+        const sortBy = document.getElementById('job-filter-sort').value;
+        
+        let filteredJobs = [...jobResults];
+        
+        if (filterSource !== 'all') {
+          filteredJobs = filteredJobs.filter(job => job.source === filterSource);
+        }
+        
+        if (sortBy === 'date') {
+          filteredJobs.sort((a, b) => {
+            // Simple date sorting for demo
+            if (a.date.includes('day') && !b.date.includes('day')) return -1;
+            if (!a.date.includes('day') && b.date.includes('day')) return 1;
+            return 0;
+          });
+        } else if (sortBy === 'match') {
+          filteredJobs.sort((a, b) => b.match - a.match);
+        }
+        
+        displayJobResults(filteredJobs);
+      }, 1000);
+    }
+
+    function displayJobResults(jobs) {
+      if (jobs.length === 0) {
+        jobResultsContainer.innerHTML = '<div class="empty-state"><p>No jobs found matching your criteria</p></div>';
+        return;
+      }
+      
+      let jobsHTML = '';
+      
+      jobs.forEach(job => {
+        let sourceIcon = '';
+        let sourceClass = '';
+        
+        if (job.source === 'linkedin') {
+          sourceIcon = '<i class="fab fa-linkedin"></i>';
+          sourceClass = 'btn-linkedin';
+        } else if (job.source === 'indeed') {
+          sourceIcon = '<i class="fas fa-search"></i>';
+          sourceClass = 'btn-indeed';
+        } else if (job.source === 'glassdoor') {
+          sourceIcon = '<i class="fas fa-building"></i>';
+          sourceClass = 'btn-glassdoor';
+        }
+        
+        jobsHTML += `
+          <div class="job-card">
+            <div class="job-header">
+              <div>
+                <div class="job-title">${job.title}</div>
+                <div class="job-company">${job.company}</div>
+              </div>
+              <div class="match-score">${job.match}% match</div>
+            </div>
+            <div class="job-location">
+              <i class="fas fa-map-marker-alt"></i> ${job.location}
+            </div>
+            <div class="job-description">
+              ${job.description}
+            </div>
+            <div>
+              ${job.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+            </div>
+            <div class="job-actions">
+              <button class="${sourceClass}" onclick="window.open('${job.url}', '_blank')">
+                ${sourceIcon} Apply on ${job.source.charAt(0).toUpperCase() + job.source.slice(1)}
+              </button>
+              <button class="btn-secondary" onclick="saveJob(${job.id})">
+                <i class="far fa-bookmark"></i> Save
+              </button>
+            </div>
+            <div class="job-source">
+              Posted ${job.date}
+            </div>
+          </div>
+        `;
+      });
+      
+      jobResultsContainer.innerHTML = jobsHTML;
+    }
+
+    function saveJob(jobId) {
+      const job = jobResults.find(j => j.id === jobId);
+      if (job) {
+        alert(`Saved job: ${job.title} at ${job.company}`);
+        // In a real app, this would save to the user's account
+      }
+    }
+
+    // Utility functions
+    function toggleDarkMode() {
+      document.body.classList.toggle("light-mode");
+      const isLightMode = document.body.classList.contains("light-mode");
+      localStorage.setItem('lightMode', isLightMode);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Hunza Travel Planner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c7873;
+            --secondary: #6fb98f;
+            --accent: #f8b400;
+            --light: #f5f5f5;
+            --dark: #333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9f9;
+            color: var(--dark);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1566609103386-994b8e3d0c21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 30px;
+        }
+        
+        .ai-planner {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #fafafa;
+        }
+        
+        .message {
+            margin-bottom: 12px;
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            line-height: 1.5;
+        }
+        
+        .user-message {
+            background: var(--primary);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .bot-message {
+            background: var(--light);
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .trip-detail-card {
+            border-left: 4px solid var(--accent);
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .budget-tracker {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .progress {
+            height: 25px;
+            margin: 10px 0;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        
+        .step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 5px;
+            font-weight: bold;
+        }
+        
+        .step.active .step-number {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .step.completed .step-number {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 60%;
+            right: -40%;
+            height: 2px;
+            background: #ddd;
+            z-index: -1;
+        }
+        
+        .step.completed:not(:last-child)::after {
+            background: var(--secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 50px 0;
+            }
+            
+            .step {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Hunza AI Planner</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#planner">Planner</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#itinerary">Itinerary</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#budget">Budget</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero text-center">
+        <div class="container">
+            <h1 class="display-5 fw-bold">AI-Powered Hunza Travel Planner</h1>
+            <p class="lead">Get a personalized 5-day Hunza itinerary under 50k PKR</p>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Step Indicator -->
+        <div class="step-indicator">
+            <div class="step active" id="step1">
+                <div class="step-number">1</div>
+                <div>Basic Info</div>
+            </div>
+            <div class="step" id="step2">
+                <div class="step-number">2</div>
+                <div>Preferences</div>
+            </div>
+            <div class="step" id="step3">
+                <div class="step-number">3</div>
+                <div>Generate Plan</div>
+            </div>
+        </div>
+
+        <!-- AI Planner Section -->
+        <section id="planner" class="ai-planner">
+            <h3 class="mb-4"><i class="fas fa-robot text-primary me-2"></i>AI Travel Assistant</h3>
+            
+            <div class="chat-container" id="chat-container">
+                <div class="message bot-message">
+                    <strong>Hunza AI:</strong> Welcome to your personalized Hunza trip planner! I'll help you create a perfect 5-day itinerary within your 50,000 PKR budget. Let's start with some basic information:
+                </div>
+                <div class="message bot-message">
+                    <strong>Hunza AI:</strong> Please tell me:
+                    <ul>
+                        <li>How many people are traveling?</li>
+                        <li>What dates are you planning to visit?</li>
+                        <li>Where will you be traveling from?</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="user-input" placeholder="Your answer...">
+                <button class="btn btn-primary" id="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+            
+            <div class="text-center">
+                <button class="btn btn-outline-secondary me-2" id="restart-btn"><i class="fas fa-redo"></i> Restart</button>
+                <button class="btn btn-success" id="generate-btn" disabled><i class="fas fa-magic"></i> Generate Full Plan</button>
+            </div>
+        </section>
+
+        <!-- Trip Details Section -->
+        <section id="itinerary" class="mt-5" style="display: none;">
+            <h3 class="mb-4"><i class="fas fa-calendar-alt text-primary me-2"></i>Your Personalized Itinerary</h3>
+            
+            <div class="trip-detail-card">
+                <h5><i class="fas fa-users me-2"></i>Travel Party</h5>
+                <p id="travel-party">2 adults</p>
+            </div>
+            
+            <div class="trip-detail-card">
+                <h5><i class="fas fa-calendar-day me-2"></i>Travel Dates</h5>
+                <p id="travel-dates">June 15-20, 2023</p>
+            </div>
+            
+            <div class="trip-detail-card">
+                <h5><i class="fas fa-map-marker-alt me-2"></i>Departure City</h5>
+                <p id="departure-city">Islamabad</p>
+            </div>
+            
+            <div id="itinerary-days" class="mt-4">
+                <!-- Generated itinerary will appear here -->
+            </div>
+        </section>
+
+        <!-- Budget Section -->
+        <section id="budget" class="mt-5" style="display: none;">
+            <h3 class="mb-4"><i class="fas fa-wallet text-primary me-2"></i>Budget Breakdown</h3>
+            
+            <div class="budget-tracker">
+                <h5>Total Budget: 50,000 PKR</h5>
+                <div class="progress">
+                    <div class="progress-bar bg-success" id="budget-progress" role="progressbar" style="width: 0%">0%</div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <h6>Transport</h6>
+                        <p id="transport-cost">PKR 0</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h6>Accommodation</h6>
+                        <p id="accommodation-cost">PKR 0</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h6>Food</h6>
+                        <p id="food-cost">PKR 0</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h6>Activities</h6>
+                        <p id="activities-cost">PKR 0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="budget-details">
+                <!-- Generated budget details will appear here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p>&copy; 2023 Hunza AI Travel Planner. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Trip planning state
+        const tripState = {
+            step: 1,
+            partySize: null,
+            travelDates: null,
+            departureCity: null,
+            preferences: {
+                transport: null,
+                accommodation: null,
+                activities: []
+            },
+            budget: {
+                transport: 0,
+                accommodation: 0,
+                food: 0,
+                activities: 0
+            }
+        };
+
+        // DOM Elements
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const generateBtn = document.getElementById('generate-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const itinerarySection = document.getElementById('itinerary');
+        const budgetSection = document.getElementById('budget');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            sendBtn.addEventListener('click', sendMessage);
+            userInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendMessage();
+            });
+            generateBtn.addEventListener('click', generateFullPlan);
+            restartBtn.addEventListener('click', restartPlanner);
+        });
+
+        // Chat function
+        async function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            // Add user message to chat
+            addMessage(message, 'user');
+
+            // Clear input
+            userInput.value = '';
+
+            // Process user input based on current step
+            switch (tripState.step) {
+                case 1:
+                    await processBasicInfo(message);
+                    break;
+                case 2:
+                    await processPreferences(message);
+                    break;
+                default:
+                    addMessage("I'm ready to generate your full itinerary when you are!", 'bot');
+            }
+        }
+
+        // Process basic trip information
+        async function processBasicInfo(message) {
+            // Simple NLP - extract numbers for party size, dates, and city
+            const partyMatch = message.match(/\d+/);
+            const dateMatch = message.match(/(\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4})/i);
+            const cityMatch = message.match(/(Islamabad|Karachi|Lahore|Peshawar|Rawalpindi)/i);
+
+            if (partyMatch) {
+                tripState.partySize = parseInt(partyMatch[0]);
+                addMessage(`Got it! ${tripState.partySize} people traveling.`, 'bot');
+            }
+
+            if (dateMatch) {
+                tripState.travelDates = dateMatch[0];
+                addMessage(`Travel dates: ${tripState.travelDates}.`, 'bot');
+            }
+
+            if (cityMatch) {
+                tripState.departureCity = cityMatch[0];
+                addMessage(`Departing from ${tripState.departureCity}.`, 'bot');
+            }
+
+            // Check if we have all basic info
+            if (tripState.partySize && tripState.travelDates && tripState.departureCity) {
+                tripState.step = 2;
+                updateStepIndicator();
+                addMessage("Great! Now let's talk about your preferences:", 'bot');
+                addMessage("1. What type of transport do you prefer? (Flight, Bus, or Private Car)", 'bot');
+            } else {
+                const missing = [];
+                if (!tripState.partySize) missing.push("number of travelers");
+                if (!tripState.travelDates) missing.push("travel dates");
+                if (!tripState.departureCity) missing.push("departure city");
+                
+                addMessage(`I still need your ${missing.join(' and ')}. Could you please provide that?`, 'bot');
+            }
+        }
+
+        // Process travel preferences
+        async function processPreferences(message) {
+            if (!tripState.preferences.transport) {
+                const transportMatch = message.match(/(flight|bus|private car)/i);
+                if (transportMatch) {
+                    tripState.preferences.transport = transportMatch[0].toLowerCase();
+                    addMessage(`Transport: ${tripState.preferences.transport}.`, 'bot');
+                    addMessage("2. What type of accommodation do you prefer? (Budget, Mid-range, or Luxury)", 'bot');
+                } else {
+                    addMessage("Please choose between Flight, Bus, or Private Car for transport.", 'bot');
+                }
+            } 
+            else if (!tripState.preferences.accommodation) {
+                const accomMatch = message.match(/(budget|mid-range|luxury)/i);
+                if (accomMatch) {
+                    tripState.preferences.accommodation = accomMatch[0].toLowerCase();
+                    addMessage(`Accommodation: ${tripState.preferences.accommodation}.`, 'bot');
+                    addMessage("3. What activities interest you most? (Hiking, Cultural Sites, Photography, Relaxation)", 'bot');
+                } else {
+                    addMessage("Please choose between Budget, Mid-range, or Luxury for accommodation.", 'bot');
+                }
+            }
+            else {
+                // Process activities
+                const activities = ['hiking', 'cultural', 'photography', 'relaxation'];
+                const selected = activities.filter(act => message.toLowerCase().includes(act));
+                
+                if (selected.length > 0) {
+                    tripState.preferences.activities = selected;
+                    addMessage(`Selected activities: ${selected.join(', ')}.`, 'bot');
+                    
+                    // Enable generate button
+                    generateBtn.disabled = false;
+                    tripState.step = 3;
+                    updateStepIndicator();
+                    
+                    addMessage("I have all the information I need! Click 'Generate Full Plan' to create your personalized Hunza itinerary.", 'bot');
+                } else {
+                    addMessage("Please mention at least one activity you're interested in from: Hiking, Cultural Sites, Photography, or Relaxation.", 'bot');
+                }
+            }
+        }
+
+        // Generate full trip plan
+        async function generateFullPlan() {
+            addMessage("Generating your personalized 5-day Hunza itinerary...", 'bot');
+            
+            // Simulate AI processing
+            setTimeout(() => {
+                // Update trip details display
+                document.getElementById('travel-party').textContent = `${tripState.partySize} ${tripState.partySize === 1 ? 'person' : 'people'}`;
+                document.getElementById('travel-dates').textContent = tripState.travelDates || "June 15-20, 2023";
+                document.getElementById('departure-city').textContent = tripState.departureCity || "Islamabad";
+                
+                // Generate sample itinerary (in a real app, this would come from the AI)
+                const itineraryDays = [
+                    {
+                        day: 1,
+                        title: "Arrival in Hunza",
+                        activities: [
+                            "Depart from " + (tripState.departureCity || "Islamabad") + " via " + (tripState.preferences.transport || "flight"),
+                            "Arrive in Gilgit, transfer to Hunza",
+                            "Check-in at " + (tripState.preferences.accommodation === 'luxury' ? "Eagle's Nest Hotel" : 
+                                             tripState.preferences.accommodation === 'mid-range' ? "Hunza Embassy Hotel" : "PTDC Motel"),
+                            "Evening: Sunset view at Duikar viewpoint"
+                        ]
+                    },
+                    {
+                        day: 2,
+                        title: "Karimabad Exploration",
+                        activities: [
+                            "Morning: Visit Baltit Fort and Altit Fort",
+                            "Afternoon: Explore Karimabad Bazaar",
+                            "Evening: Cultural show at Cafe de Hunza"
+                        ]
+                    },
+                    {
+                        day: 3,
+                        title: "Attabad Lake & Passu",
+                        activities: [
+                            "Full day excursion to Attabad Lake",
+                            "Boat ride on the turquoise waters",
+                            "Visit Passu Cones and suspension bridge"
+                        ]
+                    },
+                    {
+                        day: 4,
+                        title: "Khunjerab Pass Adventure",
+                        activities: [
+                            "Day trip to Khunjerab Pass (China border)",
+                            "Stop at Sost for lunch",
+                            "Wildlife spotting along the way"
+                        ]
+                    },
+                    {
+                        day: 5,
+                        title: "Departure Day",
+                        activities: [
+                            "Morning: Last minute shopping",
+                            "Visit Eagle's Nest for final views",
+                            "Transfer to Gilgit for return journey"
+                        ]
+                    }
+                ];
+                
+                // Display itinerary
+                const itineraryContainer = document.getElementById('itinerary-days');
+                itineraryContainer.innerHTML = '';
+                
+                itineraryDays.forEach(day => {
+                    const dayCard = document.createElement('div');
+                    dayCard.className = 'trip-detail-card';
+                    dayCard.innerHTML = `
+                        <h5><i class="fas fa-calendar-day me-2"></i>Day ${day.day}: ${day.title}</h5>
+                        <ul class="mb-0">
+                            ${day.activities.map(act => `<li>${act}</li>`).join('')}
+                        </ul>
+                    `;
+                    itineraryContainer.appendChild(dayCard);
+                });
+                
+                // Calculate and display budget
+                calculateBudget();
+                
+                // Show itinerary and budget sections
+                itinerarySection.style.display = 'block';
+                budgetSection.style.display = 'block';
+                
+                // Scroll to itinerary
+                itinerarySection.scrollIntoView({ behavior: 'smooth' });
+                
+                // Add final message
+                addMessage("Your personalized 5-day Hunza itinerary is ready! Scroll down to see the details.", 'bot');
+                
+            }, 1500);
+        }
+
+        // Calculate budget based on preferences
+        function calculateBudget() {
+            // Transport costs
+            if (tripState.preferences.transport === 'flight') {
+                tripState.budget.transport = 10000 * tripState.partySize;
+            } else if (tripState.preferences.transport === 'bus') {
+                tripState.budget.transport = 4000 * tripState.partySize;
+            } else {
+                tripState.budget.transport = 25000; // Private car flat rate
+            }
+            
+            // Accommodation costs
+            if (tripState.preferences.accommodation === 'luxury') {
+                tripState.budget.accommodation = 5000 * tripState.partySize * 4; // 4 nights
+            } else if (tripState.preferences.accommodation === 'mid-range') {
+                tripState.budget.accommodation = 3000 * tripState.partySize * 4;
+            } else {
+                tripState.budget.accommodation = 2000 * tripState.partySize * 4;
+            }
+            
+            // Food and activities
+            tripState.budget.food = 1000 * tripState.partySize * 5; // 5 days
+            tripState.budget.activities = 2000 * tripState.partySize;
+            
+            // Update budget display
+            document.getElementById('transport-cost').textContent = `PKR ${tripState.budget.transport}`;
+            document.getElementById('accommodation-cost').textContent = `PKR ${tripState.budget.accommodation}`;
+            document.getElementById('food-cost').textContent = `PKR ${tripState.budget.food}`;
+            document.getElementById('activities-cost').textContent = `PKR ${tripState.budget.activities}`;
+            
+            // Calculate total and percentage
+            const total = Object.values(tripState.budget).reduce((sum, val) => sum + val, 0);
+            const percentage = Math.min(100, Math.round((total / 50000) * 100));
+            
+            // Update progress bar
+            const progressBar = document.getElementById('budget-progress');
+            progressBar.style.width = `${percentage}%`;
+            progressBar.textContent = `${percentage}%`;
+            
+            // Add budget details
+            const budgetDetails = document.getElementById('budget-details');
+            budgetDetails.innerHTML = `
+                <div class="trip-detail-card">
+                    <h5><i class="fas fa-money-bill-wave me-2"></i>Detailed Budget Breakdown</h5>
+                    <ul class="mb-0">
+                        <li><strong>Transport:</strong> PKR ${tripState.budget.transport} (${tripState.preferences.transport})</li>
+                        <li><strong>Accommodation:</strong> PKR ${tripState.budget.accommodation} (${tripState.preferences.accommodation})</li>
+                        <li><strong>Food:</strong> PKR ${tripState.budget.food} (PKR 1000 per person per day)</li>
+                        <li><strong>Activities:</strong> PKR ${tripState.budget.activities}</li>
+                        <li class="mt-2"><strong>Total Estimated Cost:</strong> PKR ${total}</li>
+                        <li><strong>Remaining Budget:</strong> PKR ${50000 - total}</li>
+                    </ul>
+                </div>
+            `;
+        }
+
+        // Restart planner
+        function restartPlanner() {
+            // Reset state
+            tripState.step = 1;
+            tripState.partySize = null;
+            tripState.travelDates = null;
+            tripState.departureCity = null;
+            tripState.preferences = {
+                transport: null,
+                accommodation: null,
+                activities: []
+            };
+            tripState.budget = {
+                transport: 0,
+                accommodation: 0,
+                food: 0,
+                activities: 0
+            };
+            
+            // Reset UI
+            chatContainer.innerHTML = `
+                <div class="message bot-message">
+                    <strong>Hunza AI:</strong> Welcome to your personalized Hunza trip planner! I'll help you create a perfect 5-day itinerary within your 50,000 PKR budget. Let's start with some basic information:
+                </div>
+                <div class="message bot-message">
+                    <strong>Hunza AI:</strong> Please tell me:
+                    <ul>
+                        <li>How many people are traveling?</li>
+                        <li>What dates are you planning to visit?</li>
+                        <li>Where will you be traveling from?</li>
+                    </ul>
+                </div>
+            `;
+            
+            generateBtn.disabled = true;
+            itinerarySection.style.display = 'none';
+            budgetSection.style.display = 'none';
+            updateStepIndicator();
+        }
+
+        // Helper function to add messages to chat
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            messageDiv.innerHTML = `<strong>${sender === 'user' ? 'You' : 'Hunza AI'}:</strong> ${text}`;
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // Update step indicator
+        function updateStepIndicator() {
+            document.querySelectorAll('.step').forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index + 1 < tripState.step) {
+                    step.classList.add('completed');
+                } else if (index + 1 === tripState.step) {
+                    step.classList.add('active');
+                }
+            });
+        }
+
+        // Gemini AI Integration (placeholder - add your API key)
+        async function callGeminiAPI(prompt) {
+            // Replace with your actual Gemini API implementation
+            const apiKey = 'AIzaSyD5rl09d6lHsf1D7R6-A_M3xht06A2BeDY'; // Add your API key here
+            if (!apiKey || apiKey === 'YOUR_GEMINI_API_KEY') {
+                // Fallback mock response if no API key
+                return {
+                    text: "This is a simulated response. Please add your Gemini API key for real AI responses.",
+                    details: []
+                };
+            }
+            
+            try {
+                const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + apiKey, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `You are a travel assistant for Hunza Valley. The user is planning a trip with these details: 
+                                ${JSON.stringify(tripState)}. They asked: ${prompt}. Provide a helpful, concise response.`
+                            }]
+                        }]
+                    })
+                });
+                
+                const data = await response.json();
+                return {
+                    text: data.candidates[0].content.parts[0].text,
+                    details: [] // You can extract structured data here if needed
+                };
+            } catch (error) {
+                console.error("Gemini API error:", error);
+                return {
+                    text: "Sorry, I encountered an error. Please try again later.",
+                    details: []
+                };
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+Prompt:
+hwo much price in one night pc hotel
+
+Response:
+AI: To give you an accurate price for a night at a PC Hotel, I need a little more information. "PC Hotel" can refer to a few different hotels, usually associated with the Pearl Continental chain in Pakistan.
+
+Could you please tell me:
+
+*   **Which city are you interested in?** (e.g., Karachi, Lahore, Islamabad, etc.)
+*   **What dates are you looking at?** (Prices can vary significantly depending on the day of the week, season, and any ongoing events.)
+*   **What type of room are you interested in?** (Standard, Deluxe, Suite, etc.)
+
+Once I have this information, I can check the hotel's website or a booking site to give you a price estimate.

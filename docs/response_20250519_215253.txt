@@ -1,0 +1,5 @@
+Prompt:
+who created you
+
+Gemini Response:
+I am a large language model, trained by Google.

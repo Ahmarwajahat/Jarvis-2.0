@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JARVIS 2.0 - Interaction History</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --main-bg: #0f2027;
+      --main-dark: #16213e;
+      --primary-color: #00e5ff;
+      --assistant-bg: rgba(0, 229, 255, 0.1); /* Lighter assistant bg */
+      --user-bg: rgba(255, 255, 255, 0.1); /* User bg */
+      --font: 'Segoe UI', sans-serif;
+      --light-bg: #f0f0f0;
+      --light-text: #222;
+      --light-assistant-bg: #e0f7fa;
+      --light-user-bg: #f1f1f1;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --light-border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: var(--font);
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      background: var(--main-bg);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    body.light-mode {
+      background: var(--light-bg);
+      color: var(--light-text);
+      --assistant-bg: var(--light-assistant-bg);
+      --user-bg: var(--light-user-bg);
+      --border-color: var(--light-border-color);
+    }
+
+    aside {
+      width: 250px;
+      background: #101820;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      border-right: 1px solid var(--border-color);
+    }
+
+    aside h2 {
+      color: var(--primary-color);
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    aside nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    aside nav a {
+      text-decoration: none;
+      color: #aaa;
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    aside nav a:hover {
+      background: rgba(0, 229, 255, 0.1);
+      color: #fff;
+    }
+
+    aside nav a.active {
+      background: rgba(0, 229, 255, 0.2);
+      color: var(--primary-color);
+      border-left: 4px solid var(--primary-color);
+    }
+
+    #main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    header {
+      padding: 1rem 2rem;
+      background: #142c40;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    body.light-mode header {
+      background: #ffffff;
+      color: var(--light-text);
+    }
+
+    #history-container {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+      background: var(--main-dark);
+    }
+
+    body.light-mode #history-container {
+      background: #ffffff;
+    }
+
+    .history-item {
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .history-item.user-command {
+      background: var(--user-bg);
+      border-left: 4px solid #aaa; /* Grey border for user */
+    }
+    
+    body.light-mode .history-item.user-command {
+      border-left-color: #ccc;
+    }
+
+    .history-item.assistant-response {
+      background: var(--assistant-bg);
+      border-left: 4px solid var(--primary-color); /* Primary color border for assistant */
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #aaa;
+      margin-bottom: 0.5rem;
+    }
+    
+    body.light-mode .item-header {
+        color: #555;
+    }
+
+    .item-header .type {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .history-content {
+      line-height: 1.6;
+    }
+
+    .history-timestamp {
+      font-size: 0.8rem;
+      color: #888;
+      text-align: right;
+      margin-top: 0.5rem;
+    }
+    
+    body.light-mode .history-timestamp {
+        color: #777;
+    }
+
+    button {
+      padding: 0.7rem 1.2rem;
+      background: var(--primary-color);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: black;
+      font-weight: bold;
+      transition: all 0.2s ease;
+    }
+    
+    button:hover {
+        opacity: 0.9;
+    }
+
+    .btn-danger {
+      background: #ff3d00;
+      color: white;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 1.5rem;
+        gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      aside {
+        width: 70px;
+        padding: 1rem 0.5rem;
+      }
+      aside h2 {
+        font-size: 1rem;
+      }
+      aside nav a span {
+        display: none;
+      }
+      header {
+        padding: 1rem;
+      }
+      #history-container {
+        padding: 1rem;
+      }
+      .page-title {
+          font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <h2>{{ assistant_name or 'JARVIS 2.0' }}</h2>
+    <nav>
+      <a href="/jarvis"><i class="fas fa-comment-alt"></i><span>Chat Mode</span></a>
+      <a href="/command"><i class="fas fa-terminal"></i><span>Command Mode</span></a>
+      <a href="/settings"><i class="fas fa-cog"></i><span>Settings</span></a>
+      <a href="/history" class="active"><i class="fas fa-history"></i><span>History</span></a>
+      <a href="/about"><i class="fas fa-info-circle"></i><span>About</span></a>
+    </nav>
+  </aside>
+
+  <div id="main">
+    <header>
+      <div>
+        <strong>Welcome back, {{ username }}!</strong>
+      </div>
+      <div>
+        <button onclick="window.location.href='/jarvis'"><i class="fas fa-arrow-left"></i> Back to Chat</button>
+        <button onclick="window.location.href='/logout'" style="margin-left: 10px;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+    </header>
+
+    <div id="history-container">
+      <div class="page-title">
+          <i class="fas fa-history"></i> Interaction History
+      </div>
+      
+      <div class="action-buttons">
+           <button class="btn-danger" onclick="clearHistoryConfirm()"><i class="fas fa-trash"></i> Clear History</button>
+      </div>
+
+      {% if history %}
+        {% for item in history %}
+          {% set item_id, user, command, response, timestamp = item %}
+          {% set item_type = 'user-command' if "Command" in command or "Message" in command else 'assistant-response' %}
+          {% set icon_class = 'fa-user' if item_type == 'user-command' else 'fa-robot' %}
+          {% set type_label = 'User Input' if item_type == 'user-command' else 'Assistant Output' %}
+          {% set content = command if item_type == 'user-command' else response %}
+          
+          <div class="history-item {{ item_type }}">
+            <div class="item-header">
+              <span class="type"><i class="fas {{ icon_class }}"></i> {{ type_label }}</span>
+              <span class="timestamp-raw" data-timestamp="{{ timestamp }}">{{ timestamp }}</span> </div>
+            <div class="history-content">{{ content }}</div>
+            <div class="history-timestamp" id="ts-{{ item_id }}">Just now</div> </div>
+        {% endfor %}
+      {% else %}
+         <p>No history found.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <script>
+    // Function to clear history (requires confirmation)
+    function clearHistoryConfirm() {
+      if (confirm('Are you sure you want to clear all your interaction history? This action cannot be undone.')) {
+        fetch('/clear-history', { method: 'POST' })
+          .then(response => response.json())
+          .then(data => {
+            alert(data.message);
+            if (data.status === 'success') {
+              window.location.reload(); // Reload page to show empty history
+            }
+          })
+          .catch(error => {
+            console.error('Error clearing history:', error);
+            alert('Failed to clear history.');
+          });
+      }
+    }
+
+    // Function to format timestamps (Example using simple logic, replace with moment.js or similar for accuracy)
+    function formatRelativeTime(timestampStr) {
+        const timestamp = new Date(timestampStr);
+        const now = new Date();
+        const diffSeconds = Math.floor((now - timestamp) / 1000);
+        const diffMinutes = Math.floor(diffSeconds / 60);
+        const diffHours = Math.floor(diffMinutes / 60);
+        const diffDays = Math.floor(diffHours / 24);
+
+        if (diffSeconds < 60) return "Just now";
+        if (diffMinutes < 60) return `${diffMinutes}m ago`;
+        if (diffHours < 24) return `${diffHours}h ago`;
+        if (diffDays === 1) return "Yesterday";
+        if (diffDays < 7) return `${diffDays}d ago`;
+        
+        // Fallback to default date format if older than a week
+        return timestamp.toLocaleDateString(); 
+    }
+
+    // Apply relative timestamps on load
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.history-item').forEach(item => {
+            const timestampRaw = item.querySelector('.timestamp-raw')?.dataset.timestamp;
+            const itemId = item.querySelector('.history-timestamp')?.id.split('-')[1];
+            if (timestampRaw && itemId) {
+               const relativeTime = formatRelativeTime(timestampRaw);
+               document.getElementById(`ts-${itemId}`).textContent = relativeTime;
+            }
+        });
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('lightMode') === 'true') {
+           document.body.classList.add("light-mode");
+        }
+    });
+    
+    function toggleDarkMode() {
+      document.body.classList.toggle("light-mode");
+      const isLightMode = document.body.classList.contains("light-mode");
+      localStorage.setItem('lightMode', isLightMode);
+    }
+
+  </script>
+</body>
+</html>

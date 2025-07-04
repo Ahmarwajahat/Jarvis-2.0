@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JARVIS 2.0 - Settings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --main-bg: #0f2027;
+      --main-dark: #16213e;
+      --primary-color: #00e5ff;
+      --font: 'Segoe UI', sans-serif;
+      --light-bg: #f0f0f0;
+      --light-text: #222;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: var(--font);
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      background: var(--main-bg);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    body.light-mode {
+      background: var(--light-bg);
+      color: var(--light-text);
+    }
+
+    aside {
+      width: 250px;
+      background: #101820;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    aside h2 {
+      color: var(--primary-color);
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    aside nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    aside nav a {
+      text-decoration: none;
+      color: #aaa;
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    aside nav a:hover {
+      background: rgba(0, 229, 255, 0.1);
+      color: #fff;
+    }
+
+    aside nav a.active {
+      background: rgba(0, 229, 255, 0.2);
+      color: var(--primary-color);
+      border-left: 4px solid var(--primary-color);
+    }
+
+    #main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    header {
+      padding: 1rem 2rem;
+      background: #142c40;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    body.light-mode header {
+      background: #ffffff;
+      color: var(--light-text);
+    }
+
+    #settings-container {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+      background: var(--main-dark);
+    }
+
+    body.light-mode #settings-container {
+      background: #ffffff;
+    }
+
+    .settings-section {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    body.light-mode .settings-section {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .settings-section h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    body.light-mode .form-control {
+      background: white;
+      color: var(--light-text);
+    }
+
+    .form-row {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    button {
+      padding: 0.9rem 1.5rem;
+      background: var(--primary-color);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      color: black;
+      font-weight: bold;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .btn-danger {
+      background: #ff3d00;
+      color: white;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+      background-color: var(--primary-color);
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(26px);
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    @media (max-width: 768px) {
+      aside {
+        width: 70px;
+        padding: 1rem 0.5rem;
+      }
+      aside h2 {
+        font-size: 1rem;
+      }
+      aside nav a span {
+        display: none;
+      }
+      header {
+        padding: 1rem;
+      }
+      #settings-container {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <h2>JARVIS 2.0</h2>
+    <nav>
+      <a href="/jarvis"><i class="fas fa-comment-alt"></i><span>Chat Mode</span></a>
+      <a href="#"><i class="fas fa-terminal"></i><span>Commands</span></a>
+      <a href="/settings" class="active"><i class="fas fa-cog"></i><span>Settings</span></a>
+      <a href="/history"><i class="fas fa-history"></i><span>History</span></a>
+      <a href="/about"><i class="fas fa-info-circle"></i><span>About</span></a>
+    </nav>
+  </aside>
+
+  <div id="main">
+    <header>
+      <div>
+        <strong>Welcome back, {{ username }}!</strong>
+      </div>
+      <div>
+        <button onclick="window.location.href='/jarvis'"><i class="fas fa-arrow-left"></i> Back</button>
+        <button onclick="window.location.href='/logout'"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+    </header>
+
+    <div id="settings-container">
+      <form id="settings-form">
+        <div class="settings-section">
+          <h3><i class="fas fa-user-cog"></i> User Preferences</h3>
+          
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" class="form-control" value="{{ settings.username }}">
+          </div>
+          
+          <div class="form-group">
+            <label for="language">Language</label>
+            <select id="language" class="form-control">
+              <option value="en" {% if settings.language == 'en' %}selected{% endif %}>English</option>
+              <option value="es" {% if settings.language == 'es' %}selected{% endif %}>Spanish</option>
+              <option value="fr" {% if settings.language == 'fr' %}selected{% endif %}>French</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Theme</label>
+            <div class="toggle-container">
+              <span>Dark</span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="theme" {% if settings.theme == 'light' %}checked{% endif %}>
+                <span class="toggle-slider"></span>
+              </label>
+              <span>Light</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <h3><i class="fas fa-robot"></i> Assistant Settings</h3>
+          
+          <div class="form-group">
+            <label for="assistant-name">Assistant Name</label>
+            <input type="text" id="assistant-name" class="form-control" value="{{ settings.assistant.name }}">
+          </div>
+          
+          <div class="form-group">
+            <label for="wake-word">Wake Word</label>
+            <input type="text" id="wake-word" class="form-control" value="{{ settings.assistant.wake_word }}">
+          </div>
+          
+          <div class="form-group">
+            <label>Response Style</label>
+            <div class="checkbox-group">
+              <input type="checkbox" id="concise" {% if settings.response_style.concise %}checked{% endif %}>
+              <label for="concise">Concise responses</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="emojis" {% if settings.response_style.emojis %}checked{% endif %}>
+              <label for="emojis">Use emojis</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <h3><i class="fas fa-microphone"></i> Voice Settings</h3>
+          
+          <div class="form-group">
+            <label for="voice-speed">Voice Speed</label>
+            <input type="range" id="voice-speed" class="form-control" min="0.5" max="2" step="0.1" 
+                   value="{{ settings.voice.speed }}">
+          </div>
+          
+          <div class="form-group">
+            <label for="voice-pitch">Voice Pitch</label>
+            <input type="range" id="voice-pitch" class="form-control" min="0.5" max="1.5" step="0.1" 
+                   value="{{ settings.voice.pitch }}">
+          </div>
+          
+          <div class="form-group">
+            <label for="voice-style">Voice Style</label>
+            <select id="voice-style" class="form-control">
+              <option value="neutral" {% if settings.voice.style == 'neutral' %}selected{% endif %}>Neutral</option>
+              <option value="friendly" {% if settings.voice.style == 'friendly' %}selected{% endif %}>Friendly</option>
+              <option value="professional" {% if settings.voice.style == 'professional' %}selected{% endif %}>Professional</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <h3><i class="fas fa-shield-alt"></i> Privacy & Security</h3>
+          
+          <div class="checkbox-group">
+            <input type="checkbox" id="save-history" {% if settings.privacy.save_history %}checked{% endif %}>
+            <label for="save-history">Save conversation history</label>
+          </div>
+          
+          <div class="checkbox-group">
+            <input type="checkbox" id="voice-recording" {% if settings.privacy.voice_recording %}checked{% endif %}>
+            <label for="voice-recording">Allow voice recording</label>
+          </div>
+          
+          <button type="button" class="btn-secondary" onclick="clearHistory()">
+            <i class="fas fa-trash"></i> Clear History
+          </button>
+        </div>
+
+        <div class="settings-section" style="border: 1px solid rgba(255, 0, 0, 0.2);">
+          <h3 style="color: #ff3d00;"><i class="fas fa-exclamation-triangle"></i> Advanced</h3>
+          
+          <div class="form-group">
+            <label for="api-key">API Key</label>
+            <input type="password" id="api-key" class="form-control" value="{{ settings.advanced.api_key }}">
+          </div>
+          
+          <div class="form-group">
+            <label for="model">AI Model</label>
+            <select id="model" class="form-control">
+              <option value="jarvis-standard" {% if settings.advanced.model == 'jarvis-standard' %}selected{% endif %}>JARVIS Standard</option>
+              <option value="jarvis-pro" {% if settings.advanced.model == 'jarvis-pro' %}selected{% endif %}>JARVIS Pro</option>
+              <option value="gemini-pro" {% if settings.advanced.model == 'gemini-pro' %}selected{% endif %}>Gemini Pro</option>
+            </select>
+          </div>
+          
+          <button type="button" class="btn-danger" onclick="resetDefaults()">
+            <i class="fas fa-undo"></i> Reset to Defaults
+          </button>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem;">
+          <button type="button" class="btn-secondary" onclick="discardChanges()">
+            <i class="fas fa-times"></i> Discard
+          </button>
+          <button type="submit" class="btn-primary">
+            <i class="fas fa-save"></i> Save Settings
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('settings-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      saveSettings();
+    });
+
+    function saveSettings() {
+      const formData = {
+        username: document.getElementById('username').value,
+        language: document.getElementById('language').value,
+        theme: document.getElementById('theme').checked ? 'light' : 'dark',
+        response_style: {
+          concise: document.getElementById('concise').checked,
+          emojis: document.getElementById('emojis').checked,
+          markdown: false
+        },
+        assistant: {
+          name: document.getElementById('assistant-name').value,
+          wake_word: document.getElementById('wake-word').value
+        },
+        voice: {
+          speed: parseFloat(document.getElementById('voice-speed').value),
+          pitch: parseFloat(document.getElementById('voice-pitch').value),
+          style: document.getElementById('voice-style').value
+        },
+        privacy: {
+          save_history: document.getElementById('save-history').checked,
+          voice_recording: document.getElementById('voice-recording').checked,
+          analytics: false
+        },
+        advanced: {
+          api_key: document.getElementById('api-key').value,
+          model: document.getElementById('model').value
+        }
+      };
+
+      fetch('/settings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+
+    function resetDefaults() {
+      if (confirm('Are you sure you want to reset all settings to default values?')) {
+        fetch('/reset-settings', {
+          method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+          alert(data.message);
+          window.location.reload();
+        });
+      }
+    }
+
+    function clearHistory() {
+      if (confirm('Are you sure you want to clear all conversation history?')) {
+        fetch('/clear-history', {
+          method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+          alert(data.message);
+        });
+      }
+    }
+
+    function discardChanges() {
+      if (confirm('Discard all changes?')) {
+        window.location.reload();
+      }
+    }
+  </script>
+</body>
+</html>

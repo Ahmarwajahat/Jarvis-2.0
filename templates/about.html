@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - JARVIS 2.0</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --main-bg: #0f2027;
+      --main-dark: #16213e;
+      --primary-color: #00e5ff;
+      --secondary-color: #00b4d8;
+      --font: 'Segoe UI', sans-serif;
+      --light-bg: #f0f0f0;
+      --light-text: #222;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: var(--font);
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      background: var(--main-bg);
+      color: #fff;
+      overflow: hidden;
+      line-height: 1.6;
+    }
+
+    body.light-mode {
+      background: var(--light-bg);
+      color: var(--light-text);
+    }
+
+    aside {
+      width: 250px;
+      background: #101820;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    aside h2 {
+      color: var(--primary-color);
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    aside nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    aside nav a {
+      text-decoration: none;
+      color: #aaa;
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    aside nav a:hover {
+      background: rgba(0, 229, 255, 0.1);
+      color: #fff;
+      transform: translateX(5px);
+    }
+
+    aside nav a.active {
+      background: rgba(0, 229, 255, 0.2);
+      color: var(--primary-color);
+      border-left: 4px solid var(--primary-color);
+    }
+
+    #main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    header {
+      padding: 1rem 2rem;
+      background: #142c40;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    body.light-mode header {
+      background: var(--light-bg);
+      color: var(--light-text);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    #about-container {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+      background: var(--main-dark);
+      background-image: radial-gradient(circle at 10% 20%, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 90%);
+    }
+
+    body.light-mode #about-container {
+      background: #ffffff;
+      background-image: radial-gradient(circle at 10% 20%, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.01) 90%);
+    }
+
+    .about-section {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .about-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 1rem;
+    }
+
+    .about-header h1 {
+      color: var(--primary-color);
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .about-header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body.light-mode .feature-card {
+      background: rgba(0, 0, 0, 0.03);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.4rem;
+    }
+
+    .feature-card ul {
+      padding-left: 1.8rem;
+    }
+
+    .feature-card li {
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+
+    .feature-card li:before {
+      content: "•";
+      color: var(--primary-color);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .team-member {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body.light-mode .team-member {
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      border: 4px solid var(--primary-color);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .team-member h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+      color: var(--primary-color);
+    }
+
+    .team-member .role {
+      color: var(--secondary-color);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .team-member p {
+      opacity: 0.9;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      color: #aaa;
+      transition: all 0.3s;
+      font-size: 1.2rem;
+    }
+
+    .social-links a:hover {
+      color: var(--primary-color);
+      transform: scale(1.2);
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .tech-item {
+      background: rgba(0, 229, 255, 0.1);
+      padding: 0.8rem 1.2rem;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s;
+    }
+
+    .tech-item:hover {
+      background: rgba(0, 229, 255, 0.2);
+      transform: translateY(-3px);
+    }
+
+    .tech-item i {
+      font-size: 1.2rem;
+    }
+
+    .version-info {
+      text-align: center;
+      margin-top: 3rem;
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    button {
+      padding: 0.8rem 1.5rem;
+      background: var(--primary-color);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      color: black;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    body.light-mode .btn-secondary {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--light-text);
+    }
+
+    @media (max-width: 768px) {
+      aside {
+        width: 70px;
+        padding: 1rem 0.5rem;
+      }
+      aside h2 {
+        font-size: 1rem;
+      }
+      aside nav a span {
+        display: none;
+      }
+      aside nav a {
+        justify-content: center;
+        padding: 12px 5px;
+      }
+      header {
+        padding: 1rem;
+      }
+      #about-container {
+        padding: 1rem;
+      }
+      .about-header h1 {
+        font-size: 2rem;
+      }
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+      .feature-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <h2>JARVIS 2.0</h2>
+    <nav>
+      <a href="/jarvis"><i class="fas fa-comment-alt"></i><span>Chat Mode</span></a>
+      <a href="#" onclick="showCommandsHelp()"><i class="fas fa-terminal"></i><span>Commands</span></a>
+      <a href="/settings"><i class="fas fa-cog"></i><span>Settings</span></a>
+      <a href="/history"><i class="fas fa-history"></i><span>History</span></a>
+      <a href="/about" class="active"><i class="fas fa-info-circle"></i><span>About</span></a>
+    </nav>
+  </aside>
+
+  <div id="main">
+    <header>
+      <div>
+        <strong>About JARVIS 2.0</strong>
+      </div>
+      <div style="display: flex; gap: 1rem;">
+        <button onclick="window.location.href='/jarvis'" class="btn-secondary">
+          <i class="fas fa-arrow-left"></i> Back to Chat
+        </button>
+        <button onclick="toggleDarkMode()">
+          <i class="fas fa-moon"></i> Toggle Mode
+        </button>
+      </div>
+    </header>
+
+    <div id="about-container">
+      <div class="about-section">
+        <div class="about-header">
+          <h1>JARVIS 2.0</h1>
+          <p>An Intelligent Virtual Assistant Created by AR Wajahat</p>
+          <p>Revolutionizing the way you interact with your computer through advanced AI and voice recognition</p>
+        </div>
+
+        <div class="feature-card">
+          <h3><i class="fas fa-star"></i> Project Overview</h3>
+          <p>JARVIS 2.0 represents a significant leap forward in personal assistant technology. Developed by AR Wajahat, this project combines cutting-edge AI with practical system integration to create a seamless user experience.</p>
+          <p>The assistant understands natural language commands, manages system operations, and adapts to user preferences, making it an indispensable tool for productivity and automation.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3><i class="fas fa-bolt"></i> Key Features & Capabilities</h3>
+          <ul>
+            <li><strong>Voice Interaction</strong>: Natural language processing with wake word detection ("Jarvis")</li>
+            <li><strong>System Control</strong>: Direct integration with your operating system and applications</li>
+            <li><strong>Smart Automation</strong>: Execute complex tasks with simple voice commands</li>
+            <li><strong>Personalization</strong>: Customizable settings for voice, appearance, and behavior</li>
+            <li><strong>Multi-modal Interface</strong>: Combine voice, text, and GUI interactions</li>
+            <li><strong>Learning Capabilities</strong>: Improves responses based on user interactions</li>
+            <li><strong>Privacy Focused</strong>: Local processing option for sensitive operations</li>
+            <li><strong>Cross-platform</strong>: Designed to work across different operating systems</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h3><i class="fas fa-code"></i> Technology Stack</h3>
+          <p>The project leverages a powerful combination of technologies:</p>
+          <div class="tech-stack">
+            <div class="tech-item">
+              <i class="fab fa-python"></i> Python 3.10+
+            </div>
+            <div class="tech-item">
+              <i class="fab fa-js"></i> JavaScript ES6
+            </div>
+            <div class="tech-item">
+              <i class="fab fa-html5"></i> HTML5
+            </div>
+            <div class="tech-item">
+              <i class="fab fa-css3-alt"></i> CSS3
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-server"></i> Flask
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-microphone"></i> SpeechRecognition
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-robot"></i> pyttsx3
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-brain"></i> Gemini API
+            </div>
+            <div class="tech-item">
+              <i class="fas fa-database"></i> SQLite
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <h3><i class="fas fa-users"></i> Development Team</h3>
+          <div class="team-grid">
+            <div class="team-member">
+              <img src="https://via.placeholder.com/150/00b4d8/ffffff?text=AR" alt="AR Wajahat">
+              <h4>AR Wajahat</h4>
+              <div class="role">Creator & Lead Developer</div>
+              <p>Designed and developed the core JARVIS system with focus on AI integration and system automation.</p>
+              <div class="social-links">
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Portfolio"><i class="fas fa-globe"></i></a>
+              </div>
+            </div>
+            
+            <div class="team-member">
+              <img src="https://via.placeholder.com/150/00b4d8/ffffff?text=AI" alt="AI Contributors">
+              <h4>AI Contributors</h4>
+              <div class="role">Machine Learning & NLP</div>
+              <p>Enhanced the natural language processing capabilities and voice recognition accuracy.</p>
+              <div class="social-links">
+                <a href="#" title="Gemini API"><i class="fab fa-google"></i></a>
+                <a href="#" title="Python"><i class="fab fa-python"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <h3><i class="fas fa-road"></i> Development Roadmap</h3>
+          <ul>
+            <li><strong>Version 2.1</strong>: Mobile app integration (Q3 2024)</li>
+            <li><strong>Version 2.5</strong>: Smart home device control (Q4 2024)</li>
+            <li><strong>Version 3.0</strong>: Advanced machine learning models (Q1 2025)</li>
+            <li><strong>Ongoing</strong>: Multi-language support expansion</li>
+            <li><strong>Future</strong>: Augmented reality interface</li>
+            <li><strong>Research</strong>: Emotional recognition and response</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h3><i class="fas fa-hands-helping"></i> Contribution & Support</h3>
+          <p>JARVIS 2.0 is an open-source project welcoming contributions from developers worldwide. The project is maintained by AR Wajahat with support from the open-source community.</p>
+          <p>To report issues, suggest features, or contribute code, please visit our GitHub repository.</p>
+          <div style="text-align: center; margin-top: 1.5rem;">
+            <button onclick="window.open('https://github.com', '_blank')">
+              <i class="fab fa-github"></i> GitHub Repository
+            </button>
+          </div>
+        </div>
+
+        <div class="version-info">
+          <p>JARVIS 2.0 | Version 2.0.1 | © 2024 AR Wajahat</p>
+          <p>All rights reserved</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Check for saved dark mode preference
+    if (localStorage.getItem('lightMode') === 'true') {
+      document.body.classList.add("light-mode");
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("light-mode");
+      const isLightMode = document.body.classList.contains("light-mode");
+      localStorage.setItem('lightMode', isLightMode);
+    }
+
+    function showCommandsHelp() {
+      alert("Please type or say 'help' in the chat interface to see available commands.");
+    }
+  </script>
+</body>
+</html>

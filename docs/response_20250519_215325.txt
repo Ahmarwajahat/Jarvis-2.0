@@ -1,0 +1,5 @@
+Prompt:
+ok
+
+Gemini Response:
+Okay! How can I help you today?

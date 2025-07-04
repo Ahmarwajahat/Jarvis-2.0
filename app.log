@@ -1,0 +1,80 @@
+2025-05-05 23:14:48,331 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3200
+ * Running on http://192.168.1.26:3200
+2025-05-05 23:14:48,332 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-05 23:14:48,336 - werkzeug - INFO -  * Restarting with stat
+2025-05-05 23:14:52,848 - werkzeug - WARNING -  * Debugger is active!
+2025-05-05 23:14:52,853 - werkzeug - INFO -  * Debugger PIN: 126-024-935
+2025-05-05 23:15:54,103 - werkzeug - INFO - 127.0.0.1 - - [05/May/2025 23:15:54] "GET / HTTP/1.1" 200 -
+2025-05-05 23:15:55,732 - werkzeug - INFO - 127.0.0.1 - - [05/May/2025 23:15:55] "GET / HTTP/1.1" 200 -
+2025-05-05 23:15:56,007 - werkzeug - INFO - 127.0.0.1 - - [05/May/2025 23:15:56] "GET / HTTP/1.1" 200 -
+2025-05-05 23:15:56,207 - werkzeug - INFO - 127.0.0.1 - - [05/May/2025 23:15:56] "GET / HTTP/1.1" 200 -
+2025-05-05 23:15:56,406 - werkzeug - INFO - 127.0.0.1 - - [05/May/2025 23:15:56] "GET / HTTP/1.1" 200 -
+2025-05-05 23:15:56,607 - werkzeug - INFO - 127.0.0.1 - - [05/May/2025 23:15:56] "GET / HTTP/1.1" 200 -
+2025-05-05 23:15:56,830 - werkzeug - INFO - 127.0.0.1 - - [05/May/2025 23:15:56] "GET / HTTP/1.1" 200 -
+2025-05-05 23:15:57,055 - werkzeug - INFO - 127.0.0.1 - - [05/May/2025 23:15:57] "GET / HTTP/1.1" 200 -
+2025-05-05 23:15:57,266 - werkzeug - INFO - 127.0.0.1 - - [05/May/2025 23:15:57] "GET / HTTP/1.1" 200 -
+2025-05-05 23:15:57,481 - werkzeug - INFO - 127.0.0.1 - - [05/May/2025 23:15:57] "GET / HTTP/1.1" 200 -
+2025-05-05 23:15:57,710 - werkzeug - INFO - 127.0.0.1 - - [05/May/2025 23:15:57] "GET / HTTP/1.1" 200 -
+2025-05-05 23:16:16,646 - werkzeug - INFO - 127.0.0.1 - - [05/May/2025 23:16:16] "GET / HTTP/1.1" 200 -
+2025-05-05 23:16:24,282 - werkzeug - INFO - 127.0.0.1 - - [05/May/2025 23:16:24] "GET / HTTP/1.1" 200 -
+2025-05-05 23:16:52,184 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:16:52] "GET / HTTP/1.1" 200 -
+2025-05-05 23:16:52,304 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:16:52] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-05-05 23:16:55,927 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:16:55] "GET / HTTP/1.1" 200 -
+2025-05-05 23:16:56,001 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:16:56] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-05-05 23:17:07,868 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Ahmer Sharjeel\\OneDrive\\Desktop\\project AI\\server.py', reloading
+2025-05-05 23:17:08,128 - werkzeug - INFO -  * Restarting with stat
+2025-05-05 23:17:12,273 - werkzeug - WARNING -  * Debugger is active!
+2025-05-05 23:17:12,278 - werkzeug - INFO -  * Debugger PIN: 126-024-935
+2025-05-05 23:17:13,401 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:17:13] "GET / HTTP/1.1" 200 -
+2025-05-05 23:17:14,030 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:17:14] "[33mGET /conversations/user_cj1lymvk1 HTTP/1.1[0m" 404 -
+2025-05-05 23:17:14,357 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:17:14] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 500 -
+2025-05-05 23:17:22,161 - root - INFO - Received prompt from user user_cj1lymvk1: hy...
+2025-05-05 23:17:23,802 - root - ERROR - Error generating response: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+Traceback (most recent call last):
+  File "c:\Users\Ahmer Sharjeel\OneDrive\Desktop\project AI\server.py", line 158, in generate_response
+    response = model.generate_content(
+        full_prompt,
+    ...<6 lines>...
+        }
+    )
+  File "C:\Users\Ahmer Sharjeel\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\generativeai\generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+        request,
+        **request_options,
+    )
+  File "C:\Users\Ahmer Sharjeel\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+        request,
+    ...<2 lines>...
+        metadata=metadata,
+    )
+  File "C:\Users\Ahmer Sharjeel\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "C:\Users\Ahmer Sharjeel\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+        target,
+    ...<3 lines>...
+        on_error=on_error,
+    )
+  File "C:\Users\Ahmer Sharjeel\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+        exc,
+    ...<6 lines>...
+        timeout,
+    )
+  File "C:\Users\Ahmer Sharjeel\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "C:\Users\Ahmer Sharjeel\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+  File "C:\Users\Ahmer Sharjeel\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "C:\Users\Ahmer Sharjeel\AppData\Local\Programs\Python\Python313\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.NotFound: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-05-05 23:17:23,812 - werkzeug - INFO - 192.168.1.26 - - [05/May/2025 23:17:23] "[35m[1mPOST /generate HTTP/1.1[0m" 500 -
+2025-05-05 23:19:30,268 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Ahmer Sharjeel\\OneDrive\\Desktop\\project AI\\server.py', reloading
+2025-05-05 23:19:32,525 - werkzeug - INFO -  * Restarting with stat
+2025-05-05 23:19:37,549 - werkzeug - INFO -  * Restarting with stat
+2025-05-05 23:26:30,892 - werkzeug - INFO -  * Restarting with stat

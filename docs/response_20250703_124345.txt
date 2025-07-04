@@ -1,0 +1,5 @@
+Prompt:
+ok flask is better then fast api or not in short about 1 line answer
+
+Response:
+Neither is inherently better; Flask is simpler and more mature, while FastAPI is newer and designed for speed and automatic documentation. Choose based on project complexity and performance needs.

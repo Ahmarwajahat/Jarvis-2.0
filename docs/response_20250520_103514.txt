@@ -1,0 +1,14 @@
+Prompt:
+give me information of trees in DSA in 10 lines
+
+Response:
+*   Trees are hierarchical data structures consisting of nodes connected by edges.
+*   A tree has a root node, and nodes can have children.
+*   Binary trees have at most two children per node (left and right).
+*   Common tree types include Binary Search Trees (BST), AVL trees, and B-trees.
+*   BSTs maintain sorted order for efficient searching, insertion, and deletion.
+*   Tree traversal algorithms include preorder, inorder, and postorder.
+*   Trees are used to represent hierarchical relationships, organize data, and implement search algorithms.
+*   Balanced trees (e.g., AVL, Red-Black) prevent worst-case scenarios and ensure logarithmic time complexity.
+*   Applications: file systems, databases (indexing), decision trees, and expression parsing.
+*   Height and depth are important properties for analyzing tree performance.
