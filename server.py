@@ -20,7 +20,8 @@ if not os.path.exists('uploads'):
     os.makedirs('uploads')
 
 # Gemini API Configuration
-GEMINI_API_KEY = "AIzaSyD5rl09d6lHsf1D7R6-A_M3xht06A2BeDY"
+putApi="####### Replace with your actual API key"
+GEMINI_API_KEY = putApi
 GEMINI_API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}"
 
 # Mock user database (in production, use a real database)
