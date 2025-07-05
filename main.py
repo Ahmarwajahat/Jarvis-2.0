@@ -11,7 +11,7 @@
 #     engine.runAndWait()
 
 # def ask_gemini(prompt):
-#     api_key = "AIzaSyD5rl09d6lHsf1D7R6-A_M3xht06A2BeDY"
+#     api_key = "####### Replace with your actual API key"
 #     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={api_key}"
 
 #     headers = {"Content-Type": "application/json"}
